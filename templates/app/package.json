@@ -1,34 +1,27 @@
 {
-  "readme": "README.md",
-  "name": "bsp",
-  "version": "1.0.0",
-  "description": "Binary Space Partitioning Example",
-  "main": "dist/app.js",
+  "name": "<%= name %>",
+  "version": "<%= appVersion %>",
+  "description": "<%= appDescription %>",
+  "main": "src/app.js",
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<%= userName %>/<%= name %>.git"
+  },
+  "bugs": {
+    "url": "https://github.com/<%= userName %>/<%= name %>/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "serve src/ --port 8080",
     "build": "jspm bundle-sfx app dist/app.min.js --minify --inject --skip-source-maps"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/NathanielInman/Experiments"
-  },
-  "keywords": [
-    "binary",
-    "space",
-    "partitioning",
-    "bsp",
-    "map",
-    "generation",
-    "random"
-  ],
-  "author": "Nathaniel Inman",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/NathanielInman/Experiments/issues"
-  },
-  "homepage": "https://github.com/NathanielInman/Experiments",
-  "dev-dependencies": {
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/<%= userName %>/<%= name %>",
+  "devDependencies": {
     "serve": "^1.4.0"
   },
   "jspm": {
