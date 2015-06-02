@@ -1,10 +1,13 @@
 import { easel } from "lib/easel";
 
-var headerText = '<%= name %> Version <%= appVersion %> by <%= authorName %>';
-ctx.textAlign = 'center';
-ctx.font = '24px Impact';
+var headerText = '  Version 0.1.0 by Nathaniel Inman';
 
-(function drawLoop(){
+easel.config = function(){
+  ctx.textAlign = 'center';
+  ctx.font = '24px Impact';
+};
+
+easel.redraw = function(){
   // clear screen
   ctx.fillStyle='black';
   ctx.fillRect(0,0,v.w,v.h);
@@ -35,5 +38,7 @@ ctx.font = '24px Impact';
 
   // Loop to 60fps
   setTimeout(drawLoop,16);
-})();
+};
+
+easel.redraw();
 

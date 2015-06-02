@@ -102,28 +102,6 @@ gulp.task('default', function (done) {
       default: defaults.userName
     }, {
       type   : 'confirm',
-      name   : 'sourceCustomization',
-      default: false,
-      message: 'Would you like to customize source files folders?'
-    }, {
-      name   : 'sourceBase',
-      message: 'The base folder of your source files:',
-      when   : sourceCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.source.base
-    }, {
-      type   : 'confirm',
-      name   : 'outputCustomization',
-      default: false,
-      message: 'Would you like to customize output folders?'
-    }, {
-      name   : 'outputBase',
-      message: 'The base folder of your output files:',
-      when   : outputCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.output.base
-    }, {
-      type   : 'confirm',
       name   : 'moveon',
       message: 'Continue?'
     }],
