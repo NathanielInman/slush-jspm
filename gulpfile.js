@@ -1,4 +1,3 @@
-/// <reference path="typings/node/node.d.ts"/>
 // Load plugins
 var gulp     = require('gulp'),
     semver   = require('semver'),
