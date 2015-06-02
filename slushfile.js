@@ -6,7 +6,9 @@ var gulp      = require('gulp'),
     conflict  = require('gulp-conflict'),
     install   = require('gulp-install'),
     rename    = require('gulp-rename'),
-    template  = require('gulp-template');
+    template  = require('gulp-template'),
+    spawn     = require('child_process').spawn,
+    gutil     = require('gulp-util');
 
 var defaults = (function () {
   var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
@@ -172,6 +174,21 @@ gulp.task('default', function (done) {
           } else {
             del(dirs, done);
           } //end if
+          // Run jspm install since install package doesn't run it
+          var child = spawn('jspm', ['install'], {cwd: process.cwd()}),
+              stdout = '',
+              stderr = '';
+
+          child.stdout.setEncoding('utf8');
+          child.stdout.on('data', function(data){
+            stdout += data;
+            gutil.log(data);
+          });
+          child.stderr.setEncoding('utf8');
+          child.stderr.on('data', function(data){
+            stderr += data;
+            gutil.log(gutil.colors.red(data));
+          });
         });
     });
 });
