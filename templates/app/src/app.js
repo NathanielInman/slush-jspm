@@ -35,10 +35,8 @@ easel.redraw = function(){
 
   // Draw developer name and app version
   ctx.fillText(headerText, v.w/2, v.h-5);
-
-  // Loop to 60fps
-  setTimeout(drawLoop,16);
 };
 
-easel.redraw();
+easel.config(); // this is called every time window resizes
+easel.redraw(); // this is called every time window resizes
 
