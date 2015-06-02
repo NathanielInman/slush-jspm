@@ -175,18 +175,13 @@ gulp.task('default', function (done) {
             del(dirs, done);
           } //end if
           // Run jspm install since install package doesn't run it
-          var child = spawn('jspm', ['install'], {cwd: process.cwd()}),
-              stdout = '',
-              stderr = '';
-
+          var child = spawn('jspm', ['install'], {cwd: process.cwd()});
           child.stdout.setEncoding('utf8');
           child.stdout.on('data', function(data){
-            stdout += data;
-            gutil.log(data);
+            gutil.log(data.substring(0, data.length-1));
           });
           child.stderr.setEncoding('utf8');
           child.stderr.on('data', function(data){
-            stderr += data;
             gutil.log(gutil.colors.red(data));
           });
         });
