@@ -1,4 +1,3 @@
-/// <reference path="typings/node/node.d.ts"/>
 // load plugins
 var gulp      = require('gulp'),
     inquirer  = require('inquirer'),
@@ -27,16 +26,10 @@ var defaults = (function () {
       stylesPlugin: 'Nib'
     },
     source: {
-      base           : 'src/',
-      styles         : 'styles/',
-      scripts        : 'scripts/',
-      templates      : 'views/',
-      partials       : 'partials/'
+      base           : 'src/'
     },
     output: {
-      base   : 'dist/',
-      styles : 'css/',
-      scripts: 'js/'
+      base   : 'dist/'
     }
   };
 })();
@@ -72,16 +65,9 @@ var outputCustomizationWanted = function (answers) {
 var handleDefaults = function (answers) {
   if (!answers.sourceCustomization) {
     answers.sourceBase = defaults.source.base;
-    answers.sourceStyles = defaults.source.styles;
-    answers.sourceScripts = defaults.source.scripts;
-    answers.sourceEsnextExt = defaults.source.esnextExtension;
-    answers.sourcePartials = defaults.source.partials;
-    answers.sourceTemplates = defaults.source.templates;
   }
   if (!answers.outputCustomization) {
     answers.outputBase = defaults.output.base;
-    answers.outputStyles = defaults.output.styles;
-    answers.outputScripts = defaults.output.scripts;
   }
   return answers;
 };
@@ -113,17 +99,6 @@ gulp.task('default', function (done) {
       message: 'What is the github username?',
       default: defaults.userName
     }, {
-      type   : 'list',
-      name   : 'stylesPlugin',
-      message: 'Would you prefer a plugin with Stylus?',
-      choices: [
-        'No',
-        'Nib',
-        'Kouto Swiss'
-      ],
-      filter : filterModuleNames,
-      default: defaults.modules.stylesPlugin
-    }, {
       type   : 'confirm',
       name   : 'sourceCustomization',
       default: false,
@@ -135,30 +110,6 @@ gulp.task('default', function (done) {
       filter : filterPaths,
       default: defaults.source.base
     }, {
-      name   : 'sourceStyles',
-      message: 'The folder for your stylesheets:',
-      when   : sourceCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.source.styles
-    }, {
-      name   : 'sourceScripts',
-      message: 'The folder for your scripts:',
-      when   : sourceCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.source.scripts
-    }, {
-      name   : 'sourceTemplates',
-      message: 'The folder for your templates:',
-      when   : sourceCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.source.templates
-    }, {
-      name   : 'sourcePartials',
-      message: 'The folder for your partials (client side templates):',
-      when   : sourceCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.source.partials
-    }, {
       type   : 'confirm',
       name   : 'outputCustomization',
       default: false,
@@ -169,18 +120,6 @@ gulp.task('default', function (done) {
       when   : outputCustomizationWanted,
       filter : filterPaths,
       default: defaults.output.base
-    }, {
-      name   : 'outputStyles',
-      message: 'The folder for your stylesheets:',
-      when   : outputCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.output.styles
-    }, {
-      name   : 'outputScripts',
-      message: 'The folder for your scripts:',
-      when   : outputCustomizationWanted,
-      filter : filterPaths,
-      default: defaults.output.scripts
     }, {
       type   : 'confirm',
       name   : 'moveon',
@@ -194,11 +133,7 @@ gulp.task('default', function (done) {
       answers = handleDefaults(answers);
       answers.year = (new Date()).getFullYear();
       dirMap = {
-        'src'     : answers.sourceBase,
-        'styles'  : answers.sourceStyles,
-        'scripts' : answers.sourceScripts,
-        'partials': answers.sourcePartials,
-        'views'   : answers.sourceTemplates
+        'src'     : answers.sourceBase
       };
       gulp.src([
         __dirname + '/templates/app/**'
