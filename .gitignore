@@ -27,3 +27,7 @@ typings
 
 # Mac OS X stuff
 .DS_Store
+
+# Vim 
+*.swo
+*.swp
